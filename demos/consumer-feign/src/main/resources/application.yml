@@ -1,0 +1,45 @@
+spring:
+#  rabbitmq:
+#    host: ${RABBIT_MQ_HOST:172.16.0.6}
+#    port: ${RABBIT_MQ_PORT:31713}
+#    username: ${RABBIT_MQ_USERNAME:user}
+#    password: ${RABBIT_MQ_PASSWORD:123456}
+#  zipkin:
+#    sender:
+#      type: rabbit
+#    enabled: true
+#  sleuth:
+#    sampler:
+#      probability: 1.0
+#    feign:
+#      enabled: true
+#      processor:
+#        enabled: true
+  mvc:
+    throw-exception-if-no-handler-found: true
+  servlet:
+    multipart:
+      max-request-size: "3MB"
+      max-file-size: "2MB"
+  jackson:
+    time-zone: GMT+8
+
+logging:
+  level:
+    org.springframework.cloud.sleuth: debug
+  path: logs/
+  file:
+    max-size: 1GB
+  pattern:
+    dateformat: yy-MM-dd HH:mm:ss
+feign:
+  sentinel:
+    enabled: true
+  okhttp:
+    enabled: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
